@@ -1,0 +1,546 @@
+% Standard Finnish Invoice Template v0.4
+% Copyright 2008 Jaakko Heusala <jheusala@iki.fi>
+% 
+% See README in finnish for instructions.
+% 
+% $Id: invoice.tex 4581 2008-02-24 18:59:30Z jheusala $
+% [The zlib/libpng License]
+% 
+% This software is provided 'as-is', without any express or implied
+% warranty. In no event will the authors be held liable for any damages
+% arising from the use of this software.
+% 
+% Permission is granted to anyone to use this software for any purpose,
+% including commercial applications, and to alter it and redistribute it
+% freely, subject to the following restrictions:
+%
+%    1. The origin of this software must not be misrepresented; you must not
+%    claim that you wrote the original software. If you use this software
+%    in a product, an acknowledgment in the product documentation would be
+%    appreciated but is not required.
+%
+%    2. Altered source versions must be plainly marked as such, and must not be
+%    misrepresented as being the original software.
+%
+%    3. This notice may not be removed or altered from any source
+%    distribution.
+% 
+
+\documentclass[a4paper,10pt]{letter}
+\title{Lasku 1234}
+\date{20.02.2008}
+\usepackage{pslatex}
+\usepackage[utf8]{inputenc}
+\usepackage[finnish]{babel}
+\pagestyle{empty}
+\usepackage[left=0cm,top=0cm,right=0cm,bottom=0cm,nohead,nofoot]{geometry}
+\usepackage[gen]{eurosym}
+\usepackage{color}
+%\usepackage{pstricks}
+%\usepackage{pst-barcode}
+\usepackage{rotating}
+\usepackage[T1]{fontenc} % Fixes scandinavian character problem
+\input code128
+\begin{document}
+
+\setlength{\unitlength}{1mm}
+\begin{picture}(210,297)(0,0)
+
+%% Document Header
+\fontsize{12pt}{14pt}
+\selectfont
+\put(20,277){
+  \begin{tabular}[t]{@{}p{8.5cm}@{}p{8.5cm}@{}r}
+    \parbox[t]{9.5cm}{
+      \fontsize{16pt}{18pt}
+      \selectfont
+      \textsc{Sendanor} \\
+      \fontsize{12pt}{14pt}
+      \selectfont
+      Jaakko Heusala \\
+      Kalevalantie 6 B 33 \\
+      90570 Oulu \\
+      \\
+      \\
+      Matti Meikäläinen \\
+      Meikäläisenkatu 5 \\
+      00790 Helsinki
+    }
+    &
+    \parbox[t]{8.5cm}{
+      LASKU \\
+      \\
+      17.01.2008
+      \\
+      \\
+      \\
+      \framebox{
+        \fontsize{10pt}{11pt}
+        \selectfont
+        \begin{tabular}[t]{@{}l@{}l@{}}
+          \begin{tabular}[t]{@{}ll}
+          Laskun numero:  & 5061        \\
+          Asiakasnumero:  & 5033        \\
+          Päivämäärä:     & 17.01.2008  \\
+          Maksuehdot:     & 14 pv netto \\
+          Eräpäivä:       & 31.01.2008  \\
+          \end{tabular}
+        &
+          \begin{tabular}[t]{@{}ll}
+          Maksettava:     & 43,30 \euro \\
+          Huomautusaika:  & 8 vrk       \\
+          Viivästyskorko: & 10,00\%     \\
+          Muistutusmaksu: & 5,00 \euro  \\
+          \end{tabular}
+        \end{tabular}
+      }
+    } & 1 (1) \\
+  \end{tabular}
+}
+
+
+%% Items
+\fontsize{8pt}{9pt}
+\selectfont
+\put(10,222){
+
+  \begin{tabular}[t]{@{}rlrrrrrrr@{}}
+   \parbox[t]{0.50cm}{\raggedleft Rivi\\nro} &
+   \parbox[t]{5.5cm}{Tuote/palvelu} &
+   \parbox[t]{0.50cm}{\raggedleft KPL} &
+   \parbox[t]{1.5cm}{\raggedleft A-hinta\\veroton} &
+   \parbox[t]{1.5cm}{\raggedleft A-hinta\\verollinen} &
+   \parbox[t]{1.5cm}{\raggedleft ALV-\%} &
+   \parbox[t]{1.5cm}{\raggedleft Veroton\\yhteensä} &
+   \parbox[t]{1.5cm}{\raggedleft ALV\\yhteensä} &
+   \parbox[t]{1.5cm}{\raggedleft Verollinen\\yhteensä} \\[2.5ex]
+  \hline
+  \raggedbottom 1 & \parbox[t]{5.5cm}{Titan-webhotelli\\17.01.2008-17.01.2009}           & \raggedbottom 1,00 & \raggedbottom 24,59 & \raggedbottom 30,00 & \raggedbottom 22\% & \raggedbottom 24,59 & \raggedbottom 5,41 & \raggedbottom 30,00 \\[2.2ex]
+  \raggedbottom 2 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 3 & \parbox[t]{5.5cm}{Titan-webhotelli\\17.01.2008-17.01.2009}           & \raggedbottom 1,00 & \raggedbottom 24,59 & \raggedbottom 30,00 & \raggedbottom 22\% & \raggedbottom 24,59 & \raggedbottom 5,41 & \raggedbottom 30,00 \\[2.2ex]
+  \raggedbottom 4 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 5 & \parbox[t]{5.5cm}{Titan-webhotelli\\17.01.2008-17.01.2009}           & \raggedbottom 1,00 & \raggedbottom 24,59 & \raggedbottom 30,00 & \raggedbottom 22\% & \raggedbottom 24,59 & \raggedbottom 5,41 & \raggedbottom 30,00 \\[2.2ex]
+  \raggedbottom 6 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 7 & \parbox[t]{5.5cm}{Titan-webhotelli\\17.01.2008-17.01.2009}           & \raggedbottom 1,00 & \raggedbottom 24,59 & \raggedbottom 30,00 & \raggedbottom 22\% & \raggedbottom 24,59 & \raggedbottom 5,41 & \raggedbottom 30,00 \\[2.2ex]
+  \raggedbottom 8 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 9 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 10 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 11 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 12 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 13 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 14 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \raggedbottom 15 & \parbox[t]{5.5cm}{Rekisteröintimaksu foo.tld\\17.01.2008-17.01.2009} & \raggedbottom 1,00 & \raggedbottom 10,90 & \raggedbottom 13,30 & \raggedbottom 22\% & \raggedbottom 10,90 & \raggedbottom 2,40 & \raggedbottom 13,30 \\[2.2ex]
+  \hline
+                    & Yhteensä                                                             &      &       &       &      & 35,49 & 7,81 & 43,30 \\
+  \end{tabular}
+}
+
+
+%% Additional info
+\put(10,120){ \parbox[t]{200cm}{Muistutuksesta perimme 5 euron muistutusmaksun. Seuraavan laskun eräpäivä on 17.01.2009 tienoilla.} }
+
+
+%% Company Contact Info
+\fontsize{8pt}{8.5pt}
+\selectfont
+\put(10,110){
+  \begin{tabular}{p{3cm}p{3cm}p{4cm}p{4cm}p{3.25cm}@{}}
+  \hline
+  \\
+  \parbox[t]{3cm}{
+    \textbf{Sendanor}\\
+    \mbox{Kalevalantie 6 B 33}\\
+    \mbox{90570 Oulu}
+  } &
+  \parbox[t]{3cm}{
+    Y-tunnus: \mbox{2092540-6} \\
+    Kotipaikka: Oulu \\
+    \mbox{http://www.sendanor.fi}
+  } &
+  \parbox[t]{4cm}{
+    Sähköposti: \mbox{laskutus@sendanor.fi}\\
+    Puhelin: \mbox{040-7099704}\\
+    Faksi: \mbox{08-5555477}
+  } &
+  \parbox[t]{4cm}{
+    Tilinumero: \mbox{OP 574136-20371846}\\
+    IBAN: \mbox{FI05 5741 3620 371846}\\
+    BIC: \mbox{OKOYFIHH}
+  } &
+  \parbox[t]{3.25cm}{
+    Viitenumero: \mbox{5123010105} \\
+    VAT: \mbox{FI20925406}
+  } \\
+  \end{tabular}
+}
+
+%% Standard Finnish Bank Transfer Form
+\linethickness{0.5mm}
+
+%% For debug
+%\color{red}
+%\put(0,0){\circle{10}}
+%\put(210,0){\circle{10}}
+%\put(0,101.6){\circle{10}}
+%\put(210,101.6){\circle{10}}
+%
+%% For debug
+%\put(5,5){\makebox(0,0){0,0}}
+%\put(200,5){\makebox(0,0){210,0}}
+%\put(7,99){\makebox(0,0){0,101.6}}
+%\put(200,99){\makebox(0,0){210,101.6}}
+
+% Bold Vertical lines
+\color{blue}
+%\put(20.32,69.85){\circle{10}}
+\put(20.32,69.85){\line(0,1){31.75}}
+%\put(111.76,27.5166667){\circle{10}}
+\put(111.76,27.5166667){\line(0,1){74.0833333}}
+%\put(124.46,27.5166667){\circle{10}}
+\put(124.46,27.5166667){\line(0,1){16.9333333}}
+%\put(157.48,27.5166667){\circle{10}}
+\put(157.48,27.5166667){\line(0,1){8.46666667}}
+
+% Bold Horizontal lines
+%\put(111.76,84.6666667){\circle{10}}
+\put(111.76,84.6666667){\line(-1,0){106.68}}
+\put(111.76,84.6666667){\line(1,0){91.44}}
+
+%\put(111.76,69.85){\circle{10}}
+\put(111.76,69.85){\line(-1,0){106.68}}
+
+%\put(111.76,44.45){\circle{10}}
+\put(111.76,44.45){\line(1,0){91.44}}
+
+%\put(111.76,35.9833333){\circle{10}}
+\put(111.76,35.9833333){\line(-1,0){106.68}}
+\put(111.76,35.9833333){\line(1,0){91.44}}
+
+%\put(111.76,27.5166667){\circle{10}}
+\put(111.76,27.5166667){\line(-1,0){106.68}}
+\put(111.76,27.5166667){\line(1,0){91.44}}
+
+%\put(52.49333333,29.6333333){\line(1,0){1.69333333}} % Tilinumeron viiva
+
+%\put(20.32,27.5166667){\circle{10}}
+\put(20.32,27.5166667){\line(0,1){8.46666667}}
+
+% Normal lines
+\linethickness{0.13mm}
+
+%% Debug line
+%\color{red}
+%\put(0,101.6){\line(1,0){210}}
+%\color{blue}
+
+% Normal Vertical Lines
+%\put(20.32,27.5166667){\circle{10}}
+%\put(20.32,27.5166667){\line(0,1){8.46666667}}
+%\put(25.40,27.5166667){\line(0,1){2.11666667}} % 01
+%\put(30.48,27.5166667){\line(0,1){2.11666667}} % 02
+%\put(35.56,27.5166667){\line(0,1){2.11666667}} % 03
+%\put(40.64,27.5166667){\line(0,1){2.11666667}} % 04
+%\put(45.72,27.5166667){\line(0,1){2.11666667}} % 05
+%\put(50.80,27.5166667){\line(0,1){2.11666667}} % 06
+%\put(55.88,27.5166667){\line(0,1){2.11666667}} % 07
+%\put(60.96,27.5166667){\line(0,1){2.11666667}} % 08
+%\put(66.04,27.5166667){\line(0,1){2.11666667}} % 09
+%\put(71.12,27.5166667){\line(0,1){2.11666667}} % 10
+%\put(76.20,27.5166667){\line(0,1){2.11666667}} % 11
+%\put(81.28,27.5166667){\line(0,1){2.11666667}} % 12
+%\put(86.36,27.5166667){\line(0,1){2.11666667}} % 13
+%\put(91.44,27.5166667){\line(0,1){2.11666667}} % 14
+%\put(96.52,27.5166667){\line(0,1){2.11666667}} % 15
+
+%\put(161.29,84.6666667){\circle{10}}
+\put(161.29,84.6666667){\line(0,1){16.9333333}}
+
+% Normal Horizontal lines
+%\put(20.02,40.2166667){\circle{10}}
+\put(20.02,40.2166667){\line(1,0){91.44}}     % 20.02 should be 20.32 (8/10 inches)
+
+% Texts
+
+% Tilinumero
+\put(0,84.6666667){
+ \makebox(19,16.9333333)[r]{
+ \begin{minipage}[r]{19mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+  \begin{flushright}
+   Saajan\\
+   tilinumero\\
+   Mottagarens\\
+   kontonummer
+  \end{flushright}
+ \end{minipage}
+ }
+}
+
+% Saaja
+\put(0,69.85){
+ \makebox(19,14.8166667)[r]{
+ \begin{minipage}[r]{19mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+  \begin{flushright}
+   Saaja\\
+   Mottagare
+  \end{flushright}
+ \end{minipage}
+ }
+}
+
+% Maksaja
+\put(0,52){
+ \makebox(19,14.8166667)[r]{
+ \begin{minipage}[r]{19mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+  \begin{flushright}
+   Maksajan\\
+   nimi ja\\
+   osoite \\
+   Betalarens \\
+   namn och \\
+   adress
+  \end{flushright}
+ \end{minipage}
+ }
+}
+
+% Allekirjoitus
+\put(0,35.9833333){
+ \makebox(19,14.8166667)[r]{
+ \begin{minipage}[r]{19mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+  \begin{flushright}
+   Alle-\\
+   kirjoitus\\
+   Underskrift
+  \end{flushright}
+ \end{minipage}
+ }
+}
+
+% Tililtä nro
+\put(0,27.5166667){
+ \makebox(19,8.46666667)[r]{
+ \begin{minipage}[r]{19mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+  \begin{flushright}
+   Tililtä nro\\
+   Från konto nr
+  \end{flushright}
+ \end{minipage}
+ }
+}
+
+% Viitenumero
+\put(111.5,35.9833333){
+ \makebox(12.7,8.46666667)[l]{
+ \begin{minipage}[l]{12.7mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+   Viitenro\\
+   Ref.nr
+ \end{minipage}
+ }
+}
+
+% Eräpäivä
+\put(111.5,27.5166667){
+ \makebox(12.7,8.46666667)[l]{
+ \begin{minipage}[l]{12.7mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+   Eräpäivä\\
+   Förf.dag
+ \end{minipage}
+ }
+}
+
+% Euro
+\put(157,26.5){
+ \makebox(12.7,8.46666667)[tl]{
+ \begin{minipage}[tl]{12.7mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+   Euro
+ \end{minipage}
+ }
+}
+
+% IBAN-ohje
+%\put(111.5,99.5){\circle{10}}
+\put(111.5,98){
+ \makebox(12.7,4)[bl]{
+ \begin{minipage}[bl]{12.7mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+   IBAN
+ \end{minipage}
+ }
+}
+
+% BIC-ohje
+%\put(157,99.5){\circle{10}}
+\put(160.81,98){
+ \makebox(12.7,4)[bl]{
+ \begin{minipage}[bl]{12.7mm}
+  \fontsize{7pt}{8pt}
+  \selectfont
+   BIC
+ \end{minipage}
+ }
+}
+
+% Tilisiirtoteksti
+\put(4.5,37){
+ \begin{sideways}
+  \fontsize{8pt}{8.5pt}
+  \selectfont
+  \textbf{TILISIIRTO GIRERING}
+ \end{sideways}
+}
+
+% Maksu välitetään -teksti
+%\put(150,5){\circle{10}}
+\put(150,5){
+ \makebox(52,12)[t]{
+ \begin{minipage}[t]{52mm}
+  \fontsize{5pt}{5.5pt}
+  \selectfont
+   Maksu välitetään saajalle vain Suomessa Kotimaan maksujenvälityksen yleisten
+   ehtojen mukaisesti ja vain maksajan ilmoittaman tilinumeron perusteella. \\
+   Betalningen förmedlas till mottagare endast i Finland enligt Allmänna villkor för
+   inrikes betalningsförmedling och endast till det kontonummer betalaren angivit.
+ \end{minipage}
+ }
+}
+
+
+\color{black}
+\fontsize{9pt}{10pt}
+\selectfont
+
+% Saajan tilinumero
+%\put(20.32,86.5){\circle{10}}
+\put(20.32,86.5){
+ \makebox(91.44,16.9333333)[bl]{
+ \begin{minipage}[bl]{91.44mm}
+  \fontsize{9pt}{10pt}
+  \selectfont
+   OP 574136-20371846 \\
+   OP 574136-20371846 \\
+   OP 574136-20371846 \\
+   OP 574136-20371846
+ \end{minipage}
+ }
+}
+
+% Saaja
+
+\put(20.32,68.25){
+ \makebox(91.44,13.7)[tl]{
+ \begin{minipage}[tl]{91.44mm}
+  \fontsize{9pt}{10pt}
+  \selectfont
+  SENDANOR \\
+  KALEVALANTIE 6 B 33 \\
+  90570 OULU
+ \end{minipage}
+ }
+}
+
+% Maksaja
+\put(20.32,35.9833333){
+ \makebox(91.44,29.6333333)[tl]{
+ \begin{minipage}[tl]{91.44mm}
+  \fontsize{9pt}{10pt}
+  \selectfont
+  MATTI MEIKÄLÄINEN \\
+  MEIKÄLÄISENKATU 5 \\
+  00790 HELSINKI
+ \end{minipage}
+ }
+}
+
+% Viestiosa
+\put(114.3,44.45){
+ \makebox(81.28,38)[tl]{
+ \begin{minipage}[tl]{81.28mm}
+  \fontsize{9pt}{10pt}
+  \selectfont
+  Laskunumero: 5123 \\
+  Asiakasnumero: 5612 \\
+  \\
+  \\
+  \\
+  \\
+  \\
+  Viitenumero mainittava maksaessa!
+ \end{minipage}
+ }
+}
+
+% Viitenumero
+\put(132.08,39){ 5123010105 } % Viitenumero
+\put(132.08,30){ 10.08.2008 } % Eräpäivä
+\put(168,30){ 964,22 } % Summa
+
+% IBAN
+%\put(121,86.5){\circle{10}}
+\put(121,86.5){
+ \makebox(81.28,16.9333333)[bl]{
+ \begin{minipage}[bl]{81.28mm}
+  \fontsize{9pt}{10pt}
+  \selectfont
+  FI05 5741 3620 3718 46 \\
+  FI05 5741 3620 3718 46 \\
+  FI05 5741 3620 3718 46 \\
+  FI05 5741 3620 3718 46
+ \end{minipage}
+ }
+}
+
+% BIC
+%\put(175,86.5){\circle{10}}
+\put(175,86.5){
+ \makebox(81.28,16.9333333)[bl]{
+ \begin{minipage}[bl]{81.28mm}
+  \fontsize{9pt}{10pt}
+  \selectfont
+  OKOYFIHH \\
+  OKOYFIHH \\
+  OKOYFIHH \\
+  OKOYFIHH
+ \end{minipage}
+ }
+}
+
+% Viivakoodi
+\put(20.32,3){ 
+ \X=.25mm
+ \barheight=12mm
+ \code{2574136020371846000964220000000000512301010508081000001}
+}
+
+%\put(20.32,5){\circle{10}}
+%\put(20.32,5){
+% \makebox(105,12.7){ \psbarcode{2574136020371846000964220000000000512301010508081000001}{height=4}{ean8} }
+%}
+%\put(20.32,5){
+%\psbarcode[scalex=1,transy=0,rotate=0,linecolor=black]{2574136020371846000964220000000000512301010508081000001}{height=0.42}{code128}
+%}
+
+% Pankki-teksti
+\color{blue}
+\fontsize{6pt}{10pt}
+\selectfont
+\put(185,2){ PANKKI BANKEN }
+
+\end{picture}
+\end{document}

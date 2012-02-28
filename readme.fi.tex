@@ -1,0 +1,75 @@
+\documentclass[a4paper,12pt]{article}
+\date{23.02.2008}
+\usepackage{pslatex}
+\usepackage[utf8]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage[T1]{fontenc}
+\begin{document}
+
+\section{Suomalainen laskupohja \LaTeX-formaatissa}
+
+\subsection{Tarkoitus}
+
+Olen tehnyt tämän laskupohjan laskutussovellustani varten. \LaTeX{} on erittäin 
+kätevä vaihtoehto GUI-pohjaisille sovelluksille erityisesti silloin, jos on 
+tarve tehdä laskuja koneellisesti. Laskutussovellukseni on jo melkein valmis. 
+Tämä mallipohja oli vaivalloisin vaihe siinä projektissa. Valmistuessaan 
+sovelluksen on tarkoitus lähettää PDF-muodossa laskuja automaattisesti 
+asiakastietojen mukaan. Käyttäjän tarvitsee lähinnä vain ylläpitää rekisteriä 
+ja postittaa tulostettuja laskuja.
+
+\subsection{Toteutus}
+
+Kyseessä on Finanssialan Keskusliiton määrityksien mukaan \footnote{Uusi 
+tilisiirto-opas (http://www.fkl.fi/)} toteutetulla tilisiirtolomakkeella 
+varustettu laskupohja. Tämä muoto tilisiirtolomakkeesta on tarkoitettu 
+SEPA-siirtymäkauden lomakkeeksi 2008-1010.
+
+\subsection{Muokkausohjeet}
+
+Mallipohjaa saa kuka tahansa käyttää vapaasti zlib-lisenssin ehtojen 
+mukaisesti. Huomaa kuitenkin viivakoodin GPL-lisenssi!
+
+Käyttäjä saa muokata varsinaisen laskuosuuden mielensä mukaan, mutta 
+tilisiirtolomakkeen osuudella on tarkat määritykset. Nykyisen mallin pitäisi 
+olla jo täysin määritysten mukainen, lukuunottamatta käytettyjä malliarvoja, 
+jotka varsinkin viivakoodin osalta ovat vielä virheelliset. Lisäksi mallista 
+puuttuu vielä määrittelyssä mainittu vapaaehtoinen tuotekoodi. Jos huomaat 
+laskupohjassa virheitä, kuulen niistä mielelläni.
+
+Laskun otsikko-osuus on suunniteltu sellaiseksi, että laskun voi sellaisenaan 
+postittaa ikkunallisessa kirjekuoressa, jolloin säästytään osoitetietojen 
+kirjoittamiselta kirjeeseen erikseen.
+
+\subsection{TEX-tiedoston käsittely}
+
+Tex-tiedosto muutetaan UNIX-järjestelmässä PDF-tiedostoksi esimerkiksi komennolla:
+\begin{verbatim}
+pdflatex invoice.tex
+\end{verbatim}
+
+Käytin itse Kile-sovellusta \footnote{Kile -- an integrated LaTeX environment, 
+http://kile.sourceforge.net/} mallipohjan tekemiseen. Kilessä on sisäänrakennettu 
+monipuolinen \LaTeX-tiedostojen hallinta ja tekstieditori. Se ei täysin wysiwyg 
+\footnote{What You See Is What You Get} ole, mutta huomattavasti helpompi kuin puhdas tekstieditori.
+
+\subsection{Viivakoodi}
+
+Mallipohja käyttää erillistä code128.tex-laajennusta \footnote{Barcode macros 
+for the Code 128 standard, 
+http://www.ctan.org/tex-archive/help/Catalogue/entries/code128.html} 
+viivakoodin toteuttamiseen. Laajennus ei ole minun tekemä. Viivakoodi tulisi 
+tehdä pankkiviivakoodistandardin mukaan \footnote{Pankkiviivakoodistandardi 
+versio 5.0/15.6.2002, http://www.fkl.fi/}. Se pitäisi myös testauttaa ennen käyttöönottoa.
+
+\subsection{Kehitystehtävät ja ideat}
+
+\begin{itemize}
+ \item Malliarvot oikeanlaisiksi
+ \item Vapaaehtoinen tuotekoodikenttä
+ \item Uudet kielivaihtoehtot suomi-englanti ja ruotsi-englanti
+ \item Makrokielillä voisi toteuttaa \LaTeX{} packagen, jolloin mallista tulisi helpommin ylläpidettävä ja laskujen tekemisestä helppoa myös ilman sovellusta.
+ \item Makrokielellä arvojen laskeminen
+\end{itemize}
+
+\end{document}
